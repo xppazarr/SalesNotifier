@@ -81,6 +81,23 @@ public class SalesNotifierCommand {
                     })
                 )
             )
+            .then(ClientCommandManager.literal("boss")
+                .then(ClientCommandManager.argument("enabled", BoolArgumentType.bool())
+                    .executes(context -> {
+                        boolean enabled = BoolArgumentType.getBool(context, "enabled");
+                        SalesNotifierConfig config = SalesNotifierAPI.getConfig();
+                        SalesNotifierModule module = SalesNotifierAPI.getNotifierModule();
+
+                        if (config != null && module != null) {
+                            config.notifyBoss = enabled;
+                            module.setNotifyBoss(enabled);
+                            SalesNotifierAPI.saveConfig();
+                            context.getSource().sendFeedback(Text.literal("§aBoss notifications " + (enabled ? "enabled" : "disabled") + "!"));
+                        }
+                        return 1;
+                    })
+                )
+            )
             .then(ClientCommandManager.literal("status")
                 .executes(context -> {
                     SalesNotifierConfig config = SalesNotifierAPI.getConfig();
@@ -90,6 +107,7 @@ public class SalesNotifierCommand {
                         context.getSource().sendFeedback(Text.literal("§7Webhook URL: §f" + (config.webhookUrl.isEmpty() ? "Not set" : "Configured")));
                         context.getSource().sendFeedback(Text.literal("§7Black Market: §f" + config.notifyBlackMarket));
                         context.getSource().sendFeedback(Text.literal("§7Merchant: §f" + config.notifyMerchant));
+                        context.getSource().sendFeedback(Text.literal("§7Boss: §f" + config.notifyBoss));
                     }
                     return 1;
                 })
@@ -97,9 +115,10 @@ public class SalesNotifierCommand {
             .executes(context -> {
                 context.getSource().sendFeedback(Text.literal("§6SalesNotifier Commands:"));
                 context.getSource().sendFeedback(Text.literal("§7/salesnotifier webhook <url> §f- Set Discord webhook URL"));
-                context.getSource().sendFeedback(Text.literal("§7/salesnotifier toggle <true/false> §f- Enable/disable notifications"));
+                        context.getSource().sendFeedback(Text.literal("§7/salesnotifier toggle <true/false> §f- Enable/disable notifications"));
                 context.getSource().sendFeedback(Text.literal("§7/salesnotifier blackmarket <true/false> §f- Toggle Black Market notifications"));
                 context.getSource().sendFeedback(Text.literal("§7/salesnotifier merchant <true/false> §f- Toggle Merchant notifications"));
+                context.getSource().sendFeedback(Text.literal("§7/salesnotifier boss <true/false> §f- Toggle Boss notifications"));
                 context.getSource().sendFeedback(Text.literal("§7/salesnotifier status §f- Show current settings"));
                 return 1;
             })
