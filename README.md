@@ -8,6 +8,7 @@ You don't need to join any server to use it, idk why kids are gatekeeping this s
 
 - **Black Market Detection**: Automatically detects when the Black Market restocks and sends a notification
 - **Merchant Detection**: Detects when NPCs are back in stock and monitors for replenishment details
+- **Boss Detection**: Detects when Boss spawns posts to webhook with boss name and star rating.
 - **Discord Webhooks**: Sends  embed notifications to your Discord server
 
 ## Installation
@@ -30,6 +31,7 @@ You don't need to join any server to use it, idk why kids are gatekeeping this s
 - `/salesnotifier toggle <true/false>` - Enable/disable all notifications
 - `/salesnotifier blackmarket <true/false>` - Toggle Black Market notifications
 - `/salesnotifier merchant <true/false>` - Toggle Merchant notifications
+- `/salesnotifier boss <true/false>` - Toggle Boss notifications
 - `/salesnotifier status` - Show current configuration
 - `/salesnotifier` - Show help
 
@@ -72,6 +74,7 @@ The built mod will be in `build/libs/`
 ## License
 
 This project is licensed under CC0-1.0.
+
 
 
 
