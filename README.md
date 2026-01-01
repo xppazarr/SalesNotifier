@@ -50,12 +50,8 @@ When NPCs are back in stock:
 ```
 🛍️ Merchant Restocked!
 Merchant stocks have been replenished!
-```
-
-And for specific replenished items:
-```
-📦 Merchant Replenished
 + [Mythic] Avatar x2
+etc.
 ```
 
 ## Requirements
@@ -75,3 +71,4 @@ The built mod will be in `build/libs/`
 ## License
 
 This project is licensed under CC0-1.0.
+
