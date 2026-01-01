@@ -2,7 +2,7 @@
 
 A Fabric mod for Minecraft 1.21.11 that sends Discord webhook notifications when Black Market restocks or Merchant replenishes items.
 
-You don't need to join any server to use it, idk why kids are gatekeeping this shit lol just set up for your own webhook, any custom reqs are on my discord sola.r
+You don't need to join any server to use it, idk why kids are gatekeeping this shit lol just set up for your own webhook.
 
 ## Features
 
@@ -73,5 +73,6 @@ The built mod will be in `build/libs/`
 ## License
 
 This project is licensed under CC0-1.0.
+
 
 
