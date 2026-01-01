@@ -118,7 +118,7 @@ public class SalesNotifierModule {
                 int ratingStart = plainMessage.indexOf('(');
                 if (starStart != -1 && ratingStart != -1 && ratingStart > starStart) {
                     bossRating = plainMessage.substring(starStart + 1, ratingStart).trim();
-                    sendDiscordNotification("🐰 **Boss Spawn**", bossName + " Has Spawned!\n" + bossRating);
+                    sendDiscordNotification(" **Boss Spawn**", bossName + " Has Spawned!\n" + bossRating);
                     bossSpawnDetected = false;
                     bossName = "";
                     bossRating = "";
@@ -196,3 +196,4 @@ public class SalesNotifierModule {
         }
     }
 }
+
