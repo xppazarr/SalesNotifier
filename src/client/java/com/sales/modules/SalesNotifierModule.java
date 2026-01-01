@@ -24,11 +24,15 @@ public class SalesNotifierModule {
     private boolean enabled = true;
     private boolean notifyBlackMarket = true;
     private boolean notifyMerchant = true;
+    private boolean notifyBoss = true;
 
     private boolean merchantRestockDetected = false;
     private long lastMerchantMessageTime = 0;
     private static final long MERCHANT_MESSAGE_TIMEOUT = 3000;
     private List<String> replenishedItems = new ArrayList<>();
+    private boolean bossSpawnDetected = false;
+    private String bossName = "";
+    private String bossRating = "";
 
     public SalesNotifierModule() {
         this.webhookUrl = "";
@@ -50,16 +54,26 @@ public class SalesNotifierModule {
         this.notifyMerchant = notifyMerchant;
     }
 
+    public void setNotifyBoss(boolean notifyBoss) {
+        this.notifyBoss = notifyBoss;
+    }
+
     public void onActivate() {
         merchantRestockDetected = false;
         lastMerchantMessageTime = 0;
         replenishedItems.clear();
+        bossSpawnDetected = false;
+        bossName = "";
+        bossRating = "";
     }
 
     public void onDeactivate() {
         merchantRestockDetected = false;
         lastMerchantMessageTime = 0;
         replenishedItems.clear();
+        bossSpawnDetected = false;
+        bossName = "";
+        bossRating = "";
     }
 
     public void onChatMessage(Text message) {
@@ -87,6 +101,28 @@ public class SalesNotifierModule {
             if (plainMessage.trim().startsWith("+ [") && plainMessage.contains("]")) {
                 replenishedItems.add(plainMessage.trim());
                 return;
+            }
+        }
+
+        if (notifyBoss) {
+            if (plainMessage.contains("] Has Spawned!")) {
+                int startBracket = plainMessage.indexOf('[');
+                int endBracket = plainMessage.indexOf(']');
+                if (startBracket != -1 && endBracket != -1 && endBracket > startBracket) {
+                    bossName = plainMessage.substring(startBracket + 1, endBracket);
+                    bossSpawnDetected = true;
+                    bossRating = "";
+                }
+            } else if (bossSpawnDetected && plainMessage.contains("(Rating)") && plainMessage.contains("→")) {
+                int starStart = plainMessage.indexOf('→');
+                int ratingStart = plainMessage.indexOf('(');
+                if (starStart != -1 && ratingStart != -1 && ratingStart > starStart) {
+                    bossRating = plainMessage.substring(starStart + 1, ratingStart).trim();
+                    sendDiscordNotification("🐰 **Boss Spawn**", bossName + " Has Spawned!\n" + bossRating);
+                    bossSpawnDetected = false;
+                    bossName = "";
+                    bossRating = "";
+                }
             }
         }
     }
