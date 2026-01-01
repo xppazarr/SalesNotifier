@@ -57,6 +57,15 @@ Merchant stocks have been replenished!
 etc.
 ```
 
+### Boss
+When Boss spawns:
+```
+🐰 **Boss Spawn**
+
+Rabbit Has Spawned!
+★★★☆☆
+```
+
 ## Requirements
 
 - Minecraft 1.21.11
@@ -74,6 +83,7 @@ The built mod will be in `build/libs/`
 ## License
 
 This project is licensed under CC0-1.0.
+
 
 
 
