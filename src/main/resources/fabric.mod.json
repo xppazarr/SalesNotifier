@@ -1,0 +1,43 @@
+{
+	"schemaVersion": 1,
+	"id": "salesnotifier",
+	"version": "${version}",
+	"name": "SalesNotifier",
+	"description": "Sales Notifier",
+	"authors": [
+		"Solar"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/salesnotifier/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.sales.SalesNotifier"
+		],
+		"client": [
+			"com.sales.SalesNotifierClient"
+		]
+	},
+	"mixins": [
+		"salesnotifier.mixins.json",
+		{
+			"config": "salesnotifier.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.18.4",
+		"minecraft": "~1.21.11",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"custom": {
+		"modmenu": {
+			"parent": "salesnotifier"
+		}
+	}
+}
