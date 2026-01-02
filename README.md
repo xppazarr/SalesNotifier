@@ -1,6 +1,6 @@
 # SalesNotifier
 
-A Fabric mod for Minecraft 1.21.11 that sends Discord webhook notifications when Black Market restocks or Merchant replenishes items.
+A Fabric mod for Minecraft 1.21.11 that sends Discord webhook notifications when Black Market restocks/Merchant renews/Bosses and allows you to remotely buy merchant npcs that got restocked all from discord only.
 
 You don't need to join any server to use it, idk why kids are gatekeeping this shit lol just set up for your own webhook.
 
@@ -9,7 +9,8 @@ You don't need to join any server to use it, idk why kids are gatekeeping this s
 - **Black Market Detection**: Automatically detects when the Black Market restocks and sends a notification
 - **Merchant Detection**: Detects when NPCs are back in stock and monitors for replenishment details
 - **Boss Detection**: Detects when Boss spawns posts to webhook with boss name and star rating.
-- **Discord Webhooks**: Sends  embed notifications to your Discord server
+- **Remote Buy**: Buy NPC's from anywhere in the world all from discord.
+- **Discord Webhooks**: Sends embed notifications to your Discord server
 
 ## Installation
 
@@ -83,6 +84,7 @@ The built mod will be in `build/libs/`
 ## License
 
 This project is licensed under CC0-1.0.
+
 
 
 
