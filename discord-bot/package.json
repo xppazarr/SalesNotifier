@@ -1,0 +1,13 @@
+{
+  "name": "sales-notifier-discord-bot",
+  "version": "1.0.0",
+  "description": "Optional Discord bot for interactive NPC purchasing from Sales Notifier",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "dependencies": {
+    "discord.js": "^14.14.1",
+    "express": "^4.18.2"
+  }
+}

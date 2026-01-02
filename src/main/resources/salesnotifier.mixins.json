@@ -2,8 +2,9 @@
 	"required": true,
 	"package": "com.sales.mixin",
 	"compatibilityLevel": "JAVA_21",
-	"mixins": [
-		"ExampleMixin"
+	"client": [
+		"client.ChatHudMixin",
+		"client.SalesNotifierClientMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

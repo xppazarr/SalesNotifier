@@ -25,6 +25,7 @@ public class SalesNotifierCommand {
                             module.setWebhookUrl(url);
                             SalesNotifierAPI.saveConfig();
                             context.getSource().sendFeedback(Text.literal("§aDiscord webhook URL updated!"));
+                            context.getSource().sendFeedback(Text.literal("§7For interactive dropdowns: setup Discord bot in discord-bot/ folder"));
                         }
                         return 1;
                     })
@@ -98,27 +99,46 @@ public class SalesNotifierCommand {
                     })
                 )
             )
+            .then(ClientCommandManager.literal("autoserverjoin")
+                .then(ClientCommandManager.argument("enabled", BoolArgumentType.bool())
+                    .executes(context -> {
+                        boolean enabled = BoolArgumentType.getBool(context, "enabled");
+                        SalesNotifierConfig config = SalesNotifierAPI.getConfig();
+                        SalesNotifierModule module = SalesNotifierAPI.getNotifierModule();
+
+                        if (config != null && module != null) {
+                            config.autoServerJoin = enabled;
+                            module.setAutoServerJoin(enabled);
+                            SalesNotifierAPI.saveConfig();
+                            context.getSource().sendFeedback(Text.literal("§aAuto server join " + (enabled ? "enabled" : "disabled") + "!"));
+                        }
+                        return 1;
+                    })
+                )
+            )
             .then(ClientCommandManager.literal("status")
                 .executes(context -> {
                     SalesNotifierConfig config = SalesNotifierAPI.getConfig();
                     if (config != null) {
                         context.getSource().sendFeedback(Text.literal("§6=== SalesNotifier Status ==="));
                         context.getSource().sendFeedback(Text.literal("§7Enabled: §f" + config.enabled));
-                        context.getSource().sendFeedback(Text.literal("§7Webhook URL: §f" + (config.webhookUrl.isEmpty() ? "Not set" : "Configured")));
+                        context.getSource().sendFeedback(Text.literal("§7Webhook URL: §f" + (config.webhookUrl.isEmpty() ? "Not set" : "Configured (Discord bot optional for interactive features)")));
                         context.getSource().sendFeedback(Text.literal("§7Black Market: §f" + config.notifyBlackMarket));
                         context.getSource().sendFeedback(Text.literal("§7Merchant: §f" + config.notifyMerchant));
                         context.getSource().sendFeedback(Text.literal("§7Boss: §f" + config.notifyBoss));
+                        context.getSource().sendFeedback(Text.literal("§7Auto Server Join: §f" + config.autoServerJoin));
                     }
                     return 1;
                 })
             )
             .executes(context -> {
                 context.getSource().sendFeedback(Text.literal("§6SalesNotifier Commands:"));
-                context.getSource().sendFeedback(Text.literal("§7/salesnotifier webhook <url> §f- Set Discord webhook URL"));
+                context.getSource().sendFeedback(Text.literal("§7/salesnotifier webhook <url> §f- Set Discord webhook URL (bot optional for interactive features)"));
                         context.getSource().sendFeedback(Text.literal("§7/salesnotifier toggle <true/false> §f- Enable/disable notifications"));
                 context.getSource().sendFeedback(Text.literal("§7/salesnotifier blackmarket <true/false> §f- Toggle Black Market notifications"));
                 context.getSource().sendFeedback(Text.literal("§7/salesnotifier merchant <true/false> §f- Toggle Merchant notifications"));
                 context.getSource().sendFeedback(Text.literal("§7/salesnotifier boss <true/false> §f- Toggle Boss notifications"));
+                context.getSource().sendFeedback(Text.literal("§7/salesnotifier autoserverjoin <true/false> §f- Toggle auto server join"));
                 context.getSource().sendFeedback(Text.literal("§7/salesnotifier status §f- Show current settings"));
                 return 1;
             })

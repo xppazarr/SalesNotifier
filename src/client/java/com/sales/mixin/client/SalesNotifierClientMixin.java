@@ -26,6 +26,7 @@ public class SalesNotifierClientMixin {
         notifierModule.setNotifyBlackMarket(config.notifyBlackMarket);
         notifierModule.setNotifyMerchant(config.notifyMerchant);
         notifierModule.setNotifyBoss(config.notifyBoss);
+        notifierModule.setAutoServerJoin(config.autoServerJoin);
 
         // Set the API references
         SalesNotifierAPI.setNotifierModule(notifierModule);

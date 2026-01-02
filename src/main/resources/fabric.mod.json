@@ -23,11 +23,7 @@
 		]
 	},
 	"mixins": [
-		"salesnotifier.mixins.json",
-		{
-			"config": "salesnotifier.client.mixins.json",
-			"environment": "client"
-		}
+		"salesnotifier.mixins.json"
 	],
 	"depends": {
 		"fabricloader": ">=0.18.4",

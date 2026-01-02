@@ -17,6 +17,7 @@ public class SalesNotifierConfig {
     public boolean notifyBlackMarket = true;
     public boolean notifyMerchant = true;
     public boolean notifyBoss = true;
+    public boolean autoServerJoin = true;
 
     public static SalesNotifierConfig load() {
         if (Files.exists(CONFIG_PATH)) {
